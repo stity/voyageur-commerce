@@ -1,4 +1,6 @@
 function [ output_args ] = plot_solution( cities, solution )
+figure(1);
+clf;
 l = size(cities,1);
 scatter(cities(:,1), cities(:,2))
 hold on;

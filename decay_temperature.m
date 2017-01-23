@@ -1,6 +1,6 @@
-function [ Tf, iterf ] = decay_temperature( T, iter )
-if iter==30
-    Tf=T*0.99;
+function [ Tf, iterf ] = decay_temperature( T, iter, nbcities )
+if iter==1.5*nbcities;
+    Tf=T*0.985;
     iterf = 0;
 else
     Tf = T;

@@ -9,15 +9,18 @@ iterT = 0;
 while T>0.001
     new_s = alter_solution(current_s);
     new_d = get_total_dist(new_s, dist_matrix);
+    changed = false;
     if new_d < current_d
         current_d = new_d;
         current_s = new_s;
+        changed = true;
     else
         delta_d = new_d - current_d;
         trigger = exp(-delta_d/T);
         if rand() < trigger
             current_d = new_d;
             current_s = new_s;
+            changed = true;
         end
     end
     
@@ -25,8 +28,11 @@ while T>0.001
         best_d = current_d;
         best_s = current_s;
     end
-    
-    [T, iterT] = decay_temperature(T,iterT);
+    if changed
+        plot_solution(cities, current_s);
+    end
+    T
+    [T, iterT] = decay_temperature(T,iterT,l);
 end
 
 end
